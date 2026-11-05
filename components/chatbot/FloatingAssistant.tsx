@@ -156,7 +156,7 @@ export default function FloatingAssistant() {
   return (
     <>
       {/* 1. Floating Trigger Button with Ambient Pulse & Welcome Pill */}
-      <div className="fixed bottom-6 left-6 z-40 flex flex-col items-start gap-2.5 pointer-events-auto">
+      <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2.5 pointer-events-auto">
         {/* Occasional Welcome Pill */}
         <AnimatePresence>
           {showWelcomePill && !assistantOpen && (
@@ -244,7 +244,7 @@ export default function FloatingAssistant() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 15, scale: 0.95 }}
               transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed bottom-0 inset-x-0 sm:bottom-24 sm:left-6 sm:inset-x-auto z-50 flex h-[85vh] sm:h-[590px] w-full sm:w-[420px] max-h-[calc(100vh-100px)] flex-col rounded-t-3xl sm:rounded-3xl border border-white/[0.14] bg-slate-950/95 sm:bg-slate-950/90 backdrop-blur-2xl shadow-[0_25px_70px_rgba(0,0,0,0.9),0_0_40px_rgba(56,189,248,0.12)] overflow-hidden"
+              className="fixed bottom-0 inset-x-0 sm:bottom-24 sm:right-6 sm:inset-x-auto z-50 flex h-[85vh] sm:h-[590px] w-full sm:w-[420px] max-h-[calc(100vh-100px)] flex-col rounded-t-3xl sm:rounded-3xl border border-white/[0.14] bg-slate-950/95 sm:bg-slate-950/90 backdrop-blur-2xl shadow-[0_25px_70px_rgba(0,0,0,0.9),0_0_40px_rgba(56,189,248,0.12)] overflow-hidden"
               role="dialog"
               aria-modal="true"
               aria-label="Ask Kunal AI Assistant"
