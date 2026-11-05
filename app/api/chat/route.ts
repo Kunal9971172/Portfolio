@@ -5,7 +5,7 @@ import { buildSystemPrompt } from "@/lib/ai/prompt";
 import { rateLimited, validateMessages } from "@/lib/ai/security";
 import { synthesizeFallbackAnswer } from "@/lib/ai/fallback";
 
-// GET: lets the UI know whether the assistant is configured (no secrets exposed).
+// GET: lets the UI know whether the assistant is configured.
 export async function GET() {
   return NextResponse.json({ configured: chatProvider() !== null });
 }
@@ -50,17 +50,24 @@ export async function POST(req: Request) {
     .slice(0, 3)
     .map(([href, title]) => ({ href, title }));
 
+  const fallback = synthesizeFallbackAnswer(last, chunks, prevUser);
+
   try {
     const answer = await generate(buildSystemPrompt(chunks), v.messages);
     if (!answer.trim()) throw new Error("empty response from model");
 
-    return NextResponse.json({ answer: answer.trim(), links, retrieval: mode });
+    return NextResponse.json({
+      answer: answer.trim(),
+      links,
+      suggestions: fallback.suggestions,
+      retrieval: mode,
+    });
   } catch (e) {
     console.warn("AI upstream warning (falling back to grounded synthesis):", e instanceof Error ? e.message : "unknown");
-    const fallbackAnswer = synthesizeFallbackAnswer(last, chunks);
     return NextResponse.json({
-      answer: fallbackAnswer,
+      answer: fallback.answer,
       links,
+      suggestions: fallback.suggestions,
       retrieval: "grounded-knowledge-base",
     });
   }

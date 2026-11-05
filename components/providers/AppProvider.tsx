@@ -8,6 +8,9 @@ type Ctx = {
   toggleRecruiter: () => void;
   commandOpen: boolean;
   setCommandOpen: (v: boolean) => void;
+  assistantOpen: boolean;
+  setAssistantOpen: (v: boolean) => void;
+  toggleAssistant: () => void;
 };
 
 const AppCtx = createContext<Ctx | null>(null);
@@ -39,6 +42,7 @@ export function useApp() {
 export default function AppProvider({ children }: { children: React.ReactNode }) {
   const recruiter = useSyncExternalStore(subscribeRecruiter, readRecruiter, () => false);
   const [commandOpen, setCommandOpen] = useState(false);
+  const [assistantOpen, setAssistantOpen] = useState(false);
 
   useEffect(() => {
     document.documentElement.dataset.recruiter = recruiter ? "true" : "false";
@@ -62,9 +66,22 @@ export default function AppProvider({ children }: { children: React.ReactNode })
     } catch {}
     window.dispatchEvent(new Event(RECRUITER_EVENT));
   }, []);
+
+  const toggleAssistant = useCallback(() => {
+    setAssistantOpen((o) => !o);
+  }, []);
+
   const value = useMemo(
-    () => ({ recruiter, toggleRecruiter, commandOpen, setCommandOpen }),
-    [recruiter, toggleRecruiter, commandOpen],
+    () => ({
+      recruiter,
+      toggleRecruiter,
+      commandOpen,
+      setCommandOpen,
+      assistantOpen,
+      setAssistantOpen,
+      toggleAssistant,
+    }),
+    [recruiter, toggleRecruiter, commandOpen, assistantOpen, toggleAssistant],
   );
 
   return (

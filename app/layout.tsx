@@ -5,6 +5,7 @@ import "./globals.css";
 import AppProvider from "@/components/providers/AppProvider";
 import Navbar from "@/components/navigation/Navbar";
 import CommandCenter from "@/components/command-center/CommandCenter";
+import FloatingAssistant from "@/components/chatbot/FloatingAssistant";
 import Footer from "@/components/footer/Footer";
 import { profile } from "@/lib/data";
 
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <div id="main" className="flex-1">
             {children}
           </div>
+          <FloatingAssistant />
           <Footer />
         </AppProvider>
       </body>

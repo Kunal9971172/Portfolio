@@ -9,7 +9,7 @@ import { useApp } from "@/components/providers/AppProvider";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const { recruiter, toggleRecruiter, setCommandOpen } = useApp();
+  const { recruiter, toggleRecruiter, setCommandOpen, toggleAssistant } = useApp();
   const [open, setOpen] = useState(false);
 
   const isActive = (href: string) =>
@@ -95,14 +95,14 @@ export default function Navbar() {
           </a>
 
           {/* Ask Kunal AI */}
-          <Link
-            href="/ask-kunal"
+          <button
+            onClick={toggleAssistant}
             aria-label="Ask Kunal AI Assistant"
             className="flex items-center gap-1.5 rounded-xl border border-cyan/40 bg-cyan/15 px-3 py-1.5 text-xs font-medium text-cyan hover:bg-cyan/25 transition-all shadow-[0_0_15px_rgba(56,189,248,0.15)]"
           >
             <Sparkles size={13} />
             <span className="hidden md:inline">Ask AI</span>
-          </Link>
+          </button>
 
           {/* Mobile Menu Toggle */}
           <button
