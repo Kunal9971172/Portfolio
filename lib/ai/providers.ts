@@ -43,7 +43,10 @@ async function post(url: string, headers: Record<string, string>, body: unknown)
     body: JSON.stringify(body),
     signal: AbortSignal.timeout(30_000),
   });
-  if (!res.ok) throw new Error(`Upstream AI error ${res.status}`);
+  if (!res.ok) {
+    const errText = await res.text().catch(() => "");
+    throw new Error(`Upstream AI error ${res.status}: ${errText}`);
+  }
   return res.json();
 }
 

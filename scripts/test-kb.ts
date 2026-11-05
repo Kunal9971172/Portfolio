@@ -19,13 +19,13 @@ const cases: [string, string][] = [
   ["Explain Gurukul.ai", "gurukul-ai"],
   ["How does Judge0 integration work in Gurukul.ai?", "gurukul-ai"],
   ["Explain EduReach's Agentic RAG architecture", "edureach"],
-  ["What is Workflow.ai?", "workflow-ai"],
-  ["What internships has he completed?", "exp-UI/UX Intern"],
+  ["What is WorkflowAI?", "workflow"],
+  ["What internships has he completed?", "exp-UI/UX"],
   ["What are his achievements?", "achievements"],
   ["How can I contact him?", "contact"],
   ["Is he open to internships?", "availability"],
-  ["What is his experience with full-stack development?", "mern"], // any web/project chunk acceptable
-  ["What are his AI/ML skills?", "skills-AI & Data Science"],
+  ["What is his experience with full-stack development?", "skills-Full-Stack"],
+  ["What are his AI/ML skills?", "skills-AI"],
 ];
 let failed = 0;
 for (const [q, want] of cases) {

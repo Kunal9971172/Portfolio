@@ -3,6 +3,7 @@ import { chatProvider, generate } from "@/lib/ai/providers";
 import { retrieve } from "@/lib/ai/retrieve";
 import { buildSystemPrompt } from "@/lib/ai/prompt";
 import { rateLimited, validateMessages } from "@/lib/ai/security";
+import { synthesizeFallbackAnswer } from "@/lib/ai/fallback";
 
 // GET: lets the UI know whether the assistant is configured (no secrets exposed).
 export async function GET() {
@@ -40,25 +41,27 @@ export async function POST(req: Request) {
   const v = validateMessages(body);
   if (!v.ok) return NextResponse.json({ error: v.error, code: "BAD_REQUEST" }, { status: 400 });
 
+  const last = v.messages[v.messages.length - 1].content;
+  // Retrieval uses the latest question plus the previous user turn for follow-ups.
+  const prevUser = [...v.messages].reverse().filter((m) => m.role === "user")[1]?.content ?? "";
+  const { chunks, mode } = await retrieve(`${prevUser} ${last}`.trim(), 5);
+
+  const links = [...new Map(chunks.filter((c) => c.href).map((c) => [c.href!, c.title])).entries()]
+    .slice(0, 3)
+    .map(([href, title]) => ({ href, title }));
+
   try {
-    const last = v.messages[v.messages.length - 1].content;
-    // Retrieval uses the latest question plus the previous user turn for follow-ups.
-    const prevUser = [...v.messages].reverse().filter((m) => m.role === "user")[1]?.content ?? "";
-    const { chunks, mode } = await retrieve(`${prevUser} ${last}`.trim(), 5);
-
     const answer = await generate(buildSystemPrompt(chunks), v.messages);
-    if (!answer.trim()) throw new Error("empty");
-
-    const links = [...new Map(chunks.filter((c) => c.href).map((c) => [c.href!, c.title])).entries()]
-      .slice(0, 3)
-      .map(([href, title]) => ({ href, title }));
+    if (!answer.trim()) throw new Error("empty response from model");
 
     return NextResponse.json({ answer: answer.trim(), links, retrieval: mode });
   } catch (e) {
-    console.error("chat error", e instanceof Error ? e.message : "unknown");
-    return NextResponse.json(
-      { error: "The assistant is unavailable right now. Please try again shortly.", code: "UPSTREAM" },
-      { status: 502 },
-    );
+    console.warn("AI upstream warning (falling back to grounded synthesis):", e instanceof Error ? e.message : "unknown");
+    const fallbackAnswer = synthesizeFallbackAnswer(last, chunks);
+    return NextResponse.json({
+      answer: fallbackAnswer,
+      links,
+      retrieval: "grounded-knowledge-base",
+    });
   }
 }
