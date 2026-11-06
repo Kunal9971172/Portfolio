@@ -85,8 +85,8 @@ export default function Hero() {
             className="flex-1"
           >
             <p className="font-extrabold text-violet-400 tracking-tight text-xl sm:text-2xl lg:text-[1.65rem] leading-[1.15] uppercase">
-              Full-Stack<br />
-              Developer.
+              Product Engineer &amp;<br />
+              Full-Stack Developer.
             </p>
           </motion.div>
         </div>

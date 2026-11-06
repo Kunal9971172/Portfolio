@@ -4,10 +4,10 @@
 export const profile = {
   name: "Kunal Chaudhari",
   brand: "KUNAL.CHAUDHARI",
-  title: "AI & Data Science | Full-Stack Development | AI Systems",
+  title: "AI & Data Science | Product Engineer | Full-Stack Developer",
   location: "Pune, India",
   headline: "Engineering Intelligent Systems.",
-  positioningStatement: "AI & Data Science | Full-Stack Development | AI Systems",
+  positioningStatement: "AI & Data Science | Product Engineer & Full-Stack Developer",
   positioning:
     "Engineering intelligent applications, multi-agent systems, and scalable full-stack products.",
   intro:
