@@ -23,6 +23,7 @@
 # misc
 .DS_Store
 *.pem
+/Polished Corporate Portrait in Aviators.png
 
 # debug
 npm-debug.log*

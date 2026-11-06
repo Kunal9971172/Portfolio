@@ -18,7 +18,7 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/kunal-chaudhari-81bb22310",
   github: "https://github.com/Kunal9971172",
   resumePath: "/resume/Kunal_Chaudhari_Resume.pdf",
-  portraitPath: null as string | null,
+  portraitPath: "/images/kunal.png",
   languages: ["English", "Hindi", "Marathi"],
 };
 

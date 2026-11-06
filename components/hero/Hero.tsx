@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import {
   ArrowDown,
@@ -11,7 +12,6 @@ import {
   Cpu,
   Layers,
   GitBranch,
-  Sparkles,
 } from "lucide-react";
 import { profile } from "@/lib/data";
 
@@ -173,7 +173,7 @@ export default function Hero() {
             aria-hidden
           />
 
-          {/* 3D Glass Neural Sphere Centerpiece */}
+          {/* 3D Glass Portrait Sphere Centerpiece */}
           <motion.div
             style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
             animate={{
@@ -185,42 +185,45 @@ export default function Hero() {
               repeatType: "reverse",
               ease: "easeInOut",
             }}
-            className="relative flex h-56 w-56 sm:h-64 sm:w-64 lg:h-72 lg:w-72 items-center justify-center rounded-full border border-white/[0.18] bg-gradient-to-b from-white/[0.10] via-white/[0.03] to-white/[0.01] backdrop-blur-2xl shadow-[0_30px_70px_-15px_rgba(0,0,0,0.9),inset_0_1px_2px_rgba(255,255,255,0.4),0_0_40px_rgba(56,189,248,0.2)]"
+            className="group relative flex h-60 w-60 sm:h-68 sm:w-68 lg:h-76 lg:w-76 items-center justify-center rounded-full p-1.5 border border-white/[0.22] bg-gradient-to-b from-white/[0.12] via-white/[0.04] to-white/[0.01] backdrop-blur-2xl shadow-[0_30px_70px_-15px_rgba(0,0,0,0.9),inset_0_1px_2px_rgba(255,255,255,0.4),0_0_45px_rgba(56,189,248,0.25)]"
           >
-            {/* Internal Glass Highlight Gradients */}
+            {/* Ambient Internal Backlight */}
             <div
-              className="pointer-events-none absolute -top-8 -right-8 h-36 w-36 rounded-full bg-cyan/25 blur-2xl"
+              className="pointer-events-none absolute -top-6 -right-6 h-36 w-36 rounded-full bg-cyan/20 blur-2xl"
               aria-hidden
             />
             <div
-              className="pointer-events-none absolute -bottom-8 -left-8 h-36 w-36 rounded-full bg-violet/25 blur-2xl"
-              aria-hidden
-            />
-
-            {/* Inner Concentric Core Ring */}
-            <div
-              className="pointer-events-none absolute h-36 w-36 sm:h-44 sm:w-44 rounded-full border border-cyan/40 animate-[spin_25s_linear_infinite]"
+              className="pointer-events-none absolute -bottom-6 -left-6 h-36 w-36 rounded-full bg-violet/20 blur-2xl"
               aria-hidden
             />
 
-            {/* Center Neural Hub Nexus */}
-            <div className="relative z-10 flex flex-col items-center justify-center text-center">
-              {/* Glowing Hexagonal Node Icon */}
-              <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-cyan/40 bg-slate-950/80 shadow-[0_0_35px_rgba(56,189,248,0.45)] backdrop-blur-xl">
-                <Sparkles size={24} className="text-cyan animate-pulse" />
-              </div>
-              <p className="mt-3 font-mono text-xs font-bold tracking-widest text-white">
-                INTELLIGENT CORE
-              </p>
-              <p className="mt-0.5 font-mono text-[10px] text-cyan flex items-center gap-1 justify-center">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                SYSTEM ACTIVE
-              </p>
+            {/* Perfectly Clipped Circular Portrait */}
+            <div className="relative h-full w-full overflow-hidden rounded-full">
+              <Image
+                src={profile.portraitPath || "/images/kunal.png"}
+                alt={profile.name}
+                fill
+                priority
+                sizes="(max-width: 640px) 240px, (max-width: 1024px) 272px, 304px"
+                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+
+              {/* Liquid Glass Ambient Gradient Overlay */}
+              <div
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-black/20"
+                aria-hidden
+              />
+
+              {/* Specular Inner Rim Light */}
+              <div
+                className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-white/20 bg-gradient-to-tr from-transparent via-white/[0.03] to-white/[0.12]"
+                aria-hidden
+              />
             </div>
 
-            {/* Specular Edge Rim Light */}
+            {/* Glowing Accent Outer Orbit Ring */}
             <div
-              className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/[0.04] to-white/[0.14]"
+              className="pointer-events-none absolute -inset-1 rounded-full border border-cyan/30 opacity-70 animate-[pulse_4s_ease-in-out_infinite]"
               aria-hidden
             />
           </motion.div>
