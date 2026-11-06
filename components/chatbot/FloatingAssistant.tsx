@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles,
@@ -16,6 +17,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { useApp } from "@/components/providers/AppProvider";
+import { profile } from "@/lib/data";
 
 type Msg = {
   role: "user" | "assistant";
@@ -188,7 +190,7 @@ export default function FloatingAssistant() {
         <div className="relative group">
           {/* Subtle Ambient Breathing Glow */}
           <div
-            className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-tr from-cyan via-blue-500 to-violet-500 blur-xl opacity-40 animate-pulse duration-1000 group-hover:opacity-75 transition-opacity"
+            className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-tr from-cyan via-blue-500 to-violet-500 blur-2xl opacity-40 animate-pulse duration-1000 group-hover:opacity-75 transition-opacity"
             aria-hidden
           />
 
@@ -198,28 +200,61 @@ export default function FloatingAssistant() {
               setShowWelcomePill(false);
             }}
             aria-label="Ask Kunal - AI Portfolio Assistant"
-            className={`relative flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full border border-white/[0.18] bg-slate-950/90 backdrop-blur-2xl shadow-[0_12px_36px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.25)] transition-all duration-300 hover:scale-105 active:scale-95 ${
-              assistantOpen ? "border-cyan/60 shadow-[0_0_25px_rgba(56,189,248,0.35)]" : ""
+            className={`relative flex h-[76px] w-[76px] sm:h-[88px] sm:w-[88px] items-center justify-center rounded-full border border-cyan/40 bg-slate-950/90 backdrop-blur-2xl shadow-[0_15px_40px_rgba(0,0,0,0.85),0_0_25px_rgba(56,189,248,0.25)] transition-all duration-300 hover:scale-105 active:scale-95 ${
+              assistantOpen ? "border-cyan/70 shadow-[0_0_30px_rgba(56,189,248,0.45)]" : ""
             }`}
           >
-            {/* Inner Holographic Ring */}
-            <div className="absolute inset-1 rounded-full border border-white/[0.08] pointer-events-none" />
+            {/* Outer Subtle Glass Track */}
+            <div className="pointer-events-none absolute inset-1 rounded-full border border-white/10" />
 
-            {assistantOpen ? (
-              <X size={22} className="text-white transition-transform duration-300 group-hover:rotate-90" />
-            ) : (
-              <div className="flex flex-col items-center justify-center">
-                <Sparkles size={22} className="text-cyan animate-pulse" />
-                <span className="mt-0.5 font-mono text-[9px] font-bold tracking-wider text-slate-200">
-                  AI
-                </span>
-              </div>
-            )}
+            {/* Rotating Circular Text Boundary: ASK KUNAL */}
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+              <svg
+                className="h-full w-full animate-[spin_20s_linear_infinite] group-hover:[animation-duration:12s] transition-all"
+                viewBox="0 0 100 100"
+              >
+                <defs>
+                  <path
+                    id="askKunalBoundaryPath"
+                    d="M 50, 50 m -38, 0 a 38, 38 0 1, 1 76, 0 a 38, 38 0 1, 1 -76, 0"
+                  />
+                </defs>
+                <text className="font-mono text-[7px] font-bold uppercase tracking-[0.24em] fill-cyan/90">
+                  <textPath href="#askKunalBoundaryPath">
+                    ✦ ASK KUNAL ✦ ASK KUNAL ✦
+                  </textPath>
+                </text>
+              </svg>
+            </div>
+
+            {/* Inner Circular Portrait Container */}
+            <div className="relative flex h-[46px] w-[46px] sm:h-[56px] sm:w-[56px] items-center justify-center overflow-hidden rounded-full border border-white/20 bg-slate-900 shadow-[0_0_15px_rgba(56,189,248,0.25)]">
+              <Image
+                src={profile.portraitPath || "/images/kunal.png"}
+                alt="Ask Kunal"
+                fill
+                sizes="64px"
+                className="object-cover object-center"
+              />
+
+              {/* Specular Edge Highlight */}
+              <div
+                className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/[0.04] to-white/[0.15] ring-1 ring-inset ring-white/20"
+                aria-hidden
+              />
+
+              {/* Close State Overlay when Assistant is Open */}
+              {assistantOpen && (
+                <div className="absolute inset-0 z-20 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm transition-opacity">
+                  <X size={20} className="text-white transition-transform duration-300 group-hover:rotate-90" />
+                </div>
+              )}
+            </div>
 
             {/* Online Indicator Badge */}
-            <span className="absolute top-0.5 right-0.5 flex h-3 w-3">
+            <span className="absolute top-1 right-1 sm:top-1.5 sm:right-1.5 z-20 flex h-3.5 w-3.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 border-2 border-slate-950" />
+              <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-400 border-2 border-slate-950" />
             </span>
           </button>
         </div>
@@ -252,9 +287,15 @@ export default function FloatingAssistant() {
               {/* Header */}
               <div className="flex items-center justify-between border-b border-white/[0.08] bg-black/40 px-5 py-3.5 backdrop-blur-md">
                 <div className="flex items-center gap-3">
-                  <div className="relative flex h-10 w-10 items-center justify-center rounded-2xl bg-cyan/15 border border-cyan/35 text-cyan shadow-[0_0_20px_rgba(56,189,248,0.25)]">
-                    <Sparkles size={18} />
-                    <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-emerald-400 border border-slate-950" />
+                  <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-cyan/40 bg-slate-900 shadow-[0_0_20px_rgba(56,189,248,0.25)]">
+                    <Image
+                      src={profile.portraitPath || "/images/kunal.png"}
+                      alt="Ask Kunal"
+                      fill
+                      sizes="40px"
+                      className="object-cover object-center"
+                    />
+                    <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-emerald-400 border border-slate-950" />
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
