@@ -6,6 +6,7 @@ import AppProvider from "@/components/providers/AppProvider";
 import Navbar from "@/components/navigation/Navbar";
 import CommandCenter from "@/components/command-center/CommandCenter";
 import FloatingAssistant from "@/components/chatbot/FloatingAssistant";
+import VisitorTracker from "@/components/analytics/VisitorTracker";
 import Footer from "@/components/footer/Footer";
 import { profile } from "@/lib/data";
 
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             {children}
           </div>
           <FloatingAssistant />
+          <VisitorTracker />
           <Footer />
         </AppProvider>
       </body>
