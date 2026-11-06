@@ -44,22 +44,26 @@ export const achievements = [
   {
     title: "Google Student Ambassador",
     year: "2026",
-    detail: "Selected as Google Student Ambassador for campus leadership.",
+    org: "Google",
+    detail: "Selected as Google Student Ambassador for campus leadership, tech evangelism, and driving AI developer initiatives.",
+    category: "Ecosystem Leadership",
+    badge: "Official Ambassador",
   },
   {
     title: "2nd Prize — Startup Competition",
     year: "DYPIET",
-    detail: "Awarded second prize for MyHealth360 digital healthcare platform.",
+    org: "DYPIET Pune",
+    detail: "Awarded second prize for MyHealth360, building an integrated digital healthcare platform with predictive health telemetry.",
+    category: "Healthcare Innovation",
+    badge: "2nd Prize Winner",
   },
   {
-    title: "Allianz Tech Championship",
+    title: "Infosys Hackathon — AI Guardrail Project",
     year: "2025",
-    detail: "Selected competitive technology participant.",
-  },
-  {
-    title: "Quiz-A-Bit — Tech-a-Thon 4.0",
-    year: "BIT Mesra",
-    detail: "Participated in university-level technical competition.",
+    org: "Infosys Springboard",
+    detail: "Architected an intelligent AI Guardrail engine to intercept LLM hallucinations, neutralize adversarial prompt injections, and enforce deterministic output constraints.",
+    category: "AI Security & GenAI Safety",
+    badge: "Hackathon Project",
   },
 ];
 

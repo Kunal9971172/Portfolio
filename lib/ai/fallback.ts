@@ -210,7 +210,15 @@ ${clientWork.map((c) => `• **${c.name}**: ${c.detail}`).join("\n")}`,
   }
 
   // 7. Achievements, Awards, & Certifications Questions
-  if (q.includes("achievement") || q.includes("award") || q.includes("honor") || q.includes("certif") || q.includes("prize")) {
+  if (
+    q.includes("achievement") ||
+    q.includes("award") ||
+    q.includes("honor") ||
+    q.includes("certif") ||
+    q.includes("prize") ||
+    q.includes("infosys") ||
+    q.includes("guardrail")
+  ) {
     return {
       answer: `### Honors & Leadership
 
