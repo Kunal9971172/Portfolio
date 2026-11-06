@@ -1,8 +1,9 @@
 "use client";
 
-import { Code2, Brain, Database, Layers, Wrench } from "lucide-react";
+import { Code2, Brain, Database, Layers, Wrench, Sparkles } from "lucide-react";
 import { skillCategories, strengthening } from "@/lib/data/skills";
 import { Section } from "@/components/ui/Primitives";
+import TechIcon from "@/components/ui/TechIcon";
 
 export default function TechRadar() {
   const getIcon = (category: string) => {
@@ -14,7 +15,7 @@ export default function TechRadar() {
       case "Data Science":
         return <Database size={18} className="text-blue-400" />;
       case "Full-Stack Development":
-        return <Layers size={18} className="text-cyan-accent" />;
+        return <Layers size={18} className="text-cyan" />;
       case "Tools & Technologies":
         return <Wrench size={18} className="text-emerald-400" />;
       default:
@@ -46,14 +47,18 @@ export default function TechRadar() {
               </div>
             </div>
 
-            {/* Compact Badges */}
+            {/* Compact Badges with Official Logos */}
             <div className="flex flex-wrap gap-2">
               {cat.items.map((item) => (
                 <span
                   key={item}
-                  className="rounded-lg border border-white/[0.08] bg-white/[0.03] px-2.5 py-1 font-mono text-xs text-slate-300 transition-colors hover:border-cyan/40 hover:bg-cyan/10 hover:text-white"
+                  className="group/pill inline-flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-white/[0.03] px-2 py-1 font-mono text-[11px] text-slate-300 transition-all duration-200 hover:border-cyan/40 hover:bg-white/[0.08] hover:text-white hover:-translate-y-0.5"
                 >
-                  {item}
+                  <TechIcon
+                    name={item}
+                    className="h-3.5 w-3.5 shrink-0 transition-transform duration-200 group-hover/pill:scale-110"
+                  />
+                  <span className="tracking-tight">{item}</span>
                 </span>
               ))}
             </div>
@@ -64,7 +69,7 @@ export default function TechRadar() {
         <div className="rounded-3xl border border-blue-500/20 bg-gradient-to-b from-blue-500/10 via-blue-500/[0.03] to-transparent p-6 backdrop-blur-2xl">
           <div className="flex items-center gap-3 border-b border-blue-500/15 pb-3.5 mb-4">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/20 border border-blue-500/30">
-              <span className="h-2 w-2 rounded-full bg-blue-400 animate-ping" />
+              <Sparkles size={16} className="text-blue-400 animate-pulse" />
             </div>
             <div>
               <h3 className="text-base font-semibold text-white tracking-tight">Active Research</h3>
@@ -75,10 +80,13 @@ export default function TechRadar() {
             {strengthening.map((item) => (
               <span
                 key={item}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-blue-500/20 bg-blue-500/10 px-2.5 py-1 font-mono text-xs text-blue-200"
+                className="group/pill inline-flex items-center gap-1.5 rounded-lg border border-blue-500/25 bg-blue-500/10 px-2 py-1 font-mono text-[11px] text-blue-200 transition-all duration-200 hover:border-cyan/40 hover:bg-blue-500/20 hover:text-white hover:-translate-y-0.5"
               >
-                <span className="h-1 w-1 rounded-full bg-blue-400" />
-                {item}
+                <TechIcon
+                  name={item}
+                  className="h-3.5 w-3.5 shrink-0 text-cyan transition-transform duration-200 group-hover/pill:scale-110"
+                />
+                <span className="tracking-tight">{item}</span>
               </span>
             ))}
           </div>
