@@ -31,7 +31,13 @@ export default function Footer() {
             </li>
           ))}
           <li>
-            <a href={profile.resumePath} download className="text-cyan hover:underline">
+            <a
+              href={profile.resumePath}
+              target="_blank"
+              rel="noopener noreferrer"
+              download="Kunal_Chaudhari_Resume.pdf"
+              className="text-cyan hover:underline"
+            >
               Resume PDF
             </a>
           </li>

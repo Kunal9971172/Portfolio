@@ -111,7 +111,9 @@ export default function Hero() {
           {/* 1. View Resume (White button with dark text) */}
           <a
             href={profile.resumePath}
-            download
+            target="_blank"
+            rel="noopener noreferrer"
+            download="Kunal_Chaudhari_Resume.pdf"
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 sm:px-6 py-3 sm:py-3.5 text-xs sm:text-sm font-semibold text-black shadow-[0_10px_25px_-5px_rgba(255,255,255,0.3)] transition-all duration-300 hover:bg-white/90 hover:shadow-[0_15px_30px_-5px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 active:translate-y-0"
           >
             <Download size={15} />

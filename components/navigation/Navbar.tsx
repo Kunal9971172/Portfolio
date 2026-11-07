@@ -87,7 +87,9 @@ export default function Navbar() {
           {/* Resume Download CTA */}
           <a
             href={profile.resumePath}
-            download
+            target="_blank"
+            rel="noopener noreferrer"
+            download="Kunal_Chaudhari_Resume.pdf"
             className="hidden items-center gap-1.5 rounded-xl bg-white px-3.5 py-1.5 text-xs font-semibold text-black hover:bg-white/90 shadow-[0_4px_15px_rgba(255,255,255,0.2)] transition-all sm:flex"
           >
             <Download size={13} />
@@ -137,7 +139,9 @@ export default function Navbar() {
           <div className="pt-2 border-t border-white/[0.08] flex items-center justify-between gap-2 px-1">
             <a
               href={profile.resumePath}
-              download
+              target="_blank"
+              rel="noopener noreferrer"
+              download="Kunal_Chaudhari_Resume.pdf"
               className="flex-1 text-center rounded-xl bg-white px-3 py-2 text-xs font-semibold text-black hover:bg-white/90 transition-colors"
             >
               Download Resume

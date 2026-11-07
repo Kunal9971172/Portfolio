@@ -59,7 +59,9 @@ export default function HiringPillars() {
       <div className="mt-12 flex flex-wrap items-center gap-4 border-t border-white/[0.08] pt-8">
         <a
           href={profile.resumePath}
-          download
+          target="_blank"
+          rel="noopener noreferrer"
+          download="Kunal_Chaudhari_Resume.pdf"
           className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black hover:bg-white/90 shadow-[0_10px_25px_-5px_rgba(255,255,255,0.35)] transition-all hover:-translate-y-0.5"
         >
           <Download size={15} />

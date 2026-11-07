@@ -63,8 +63,12 @@ function Palette() {
     if (item.download) {
       const a = document.createElement("a");
       a.href = item.href;
-      a.download = "";
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.download = "Kunal_Chaudhari_Resume.pdf";
+      document.body.appendChild(a);
       a.click();
+      document.body.removeChild(a);
     } else {
       router.push(item.href);
     }

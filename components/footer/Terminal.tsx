@@ -53,8 +53,12 @@ export default function Terminal() {
         out.push("Downloading verified resume PDF…");
         const a = document.createElement("a");
         a.href = profile.resumePath;
-        a.download = "";
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.download = "Kunal_Chaudhari_Resume.pdf";
+        document.body.appendChild(a);
         a.click();
+        document.body.removeChild(a);
         break;
       }
       case "contact":

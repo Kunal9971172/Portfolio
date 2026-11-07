@@ -38,7 +38,9 @@ export default function RecruiterSummary() {
           <div className="flex flex-wrap items-center gap-2.5">
             <a
               href={profile.resumePath}
-              download
+              target="_blank"
+              rel="noopener noreferrer"
+              download="Kunal_Chaudhari_Resume.pdf"
               className="inline-flex items-center gap-1.5 rounded-xl bg-white px-4 py-2 text-xs font-semibold text-black hover:bg-white/90 transition-colors"
             >
               <Download size={13} />
