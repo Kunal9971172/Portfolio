@@ -179,7 +179,6 @@ export default function Contact() {
                 href={profile.resumePath}
                 target="_blank"
                 rel="noopener noreferrer"
-                download="Kunal_Chaudhari_Resume.pdf"
                 className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-cyan/40 bg-cyan/15 px-4 py-3 text-sm font-semibold text-cyan hover:bg-cyan/25 transition-all shadow-[0_0_20px_rgba(56,189,248,0.2)]"
               >
                 <Download size={15} />

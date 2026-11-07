@@ -89,7 +89,6 @@ export default function Navbar() {
             href={profile.resumePath}
             target="_blank"
             rel="noopener noreferrer"
-            download="Kunal_Chaudhari_Resume.pdf"
             className="hidden items-center gap-1.5 rounded-xl bg-white px-3.5 py-1.5 text-xs font-semibold text-black hover:bg-white/90 shadow-[0_4px_15px_rgba(255,255,255,0.2)] transition-all sm:flex"
           >
             <Download size={13} />
@@ -141,7 +140,6 @@ export default function Navbar() {
               href={profile.resumePath}
               target="_blank"
               rel="noopener noreferrer"
-              download="Kunal_Chaudhari_Resume.pdf"
               className="flex-1 text-center rounded-xl bg-white px-3 py-2 text-xs font-semibold text-black hover:bg-white/90 transition-colors"
             >
               Download Resume

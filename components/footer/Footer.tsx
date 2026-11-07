@@ -35,7 +35,6 @@ export default function Footer() {
               href={profile.resumePath}
               target="_blank"
               rel="noopener noreferrer"
-              download="Kunal_Chaudhari_Resume.pdf"
               className="text-cyan hover:underline"
             >
               Resume PDF

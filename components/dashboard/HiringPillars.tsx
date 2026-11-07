@@ -61,7 +61,6 @@ export default function HiringPillars() {
           href={profile.resumePath}
           target="_blank"
           rel="noopener noreferrer"
-          download="Kunal_Chaudhari_Resume.pdf"
           className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black hover:bg-white/90 shadow-[0_10px_25px_-5px_rgba(255,255,255,0.35)] transition-all hover:-translate-y-0.5"
         >
           <Download size={15} />

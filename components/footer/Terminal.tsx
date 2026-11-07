@@ -50,15 +50,8 @@ export default function Terminal() {
         router.push("/experience");
         break;
       case "resume": {
-        out.push("Downloading verified resume PDF…");
-        const a = document.createElement("a");
-        a.href = profile.resumePath;
-        a.target = "_blank";
-        a.rel = "noopener noreferrer";
-        a.download = "Kunal_Chaudhari_Resume.pdf";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+        out.push("Opening verified resume PDF in a new tab…");
+        window.open(profile.resumePath, "_blank", "noopener,noreferrer");
         break;
       }
       case "contact":
