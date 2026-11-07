@@ -56,7 +56,6 @@ export default function FloatingAssistant() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [copiedIdx, setCopiedIdx] = useState<number | null>(null);
-  const [showWelcomePill, setShowWelcomePill] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -68,14 +67,6 @@ export default function FloatingAssistant() {
       } catch {}
     }
   }, [messages]);
-
-  // Show friendly welcome bubble once after 3.2 seconds if not opened yet
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowWelcomePill(true);
-    }, 3200);
-    return () => clearTimeout(timer);
-  }, []);
 
   // Autoscroll to bottom
   useEffect(() => {
@@ -110,7 +101,6 @@ export default function FloatingAssistant() {
     const q = text.trim();
     if (!q || loading) return;
 
-    setShowWelcomePill(false);
     setError(null);
 
     const nextMessages: Msg[] = [...messages, { role: "user", content: q }];
@@ -157,35 +147,8 @@ export default function FloatingAssistant() {
 
   return (
     <>
-      {/* 1. Floating Trigger Button with Ambient Pulse & Welcome Pill */}
+      {/* 1. Floating Trigger Button with Ambient Pulse */}
       <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2.5 pointer-events-auto">
-        {/* Occasional Welcome Pill */}
-        <AnimatePresence>
-          {showWelcomePill && !assistantOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: 10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 6, scale: 0.95 }}
-              className="glass-pill relative flex items-center gap-2.5 rounded-2xl px-4 py-2.5 text-xs text-white shadow-2xl border border-cyan/30"
-            >
-              <div className="flex h-5 w-5 items-center justify-center rounded-lg bg-cyan/20 text-cyan">
-                <Sparkles size={12} />
-              </div>
-              <span className="font-medium">Curious about Kunal&apos;s projects? Ask me!</span>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setShowWelcomePill(false);
-                }}
-                className="ml-1 rounded-md p-0.5 text-slate-400 hover:text-white"
-                aria-label="Dismiss greeting"
-              >
-                <X size={13} />
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         {/* Circular Button */}
         <div className="relative group">
           {/* Subtle Ambient Breathing Glow */}
@@ -197,7 +160,6 @@ export default function FloatingAssistant() {
           <button
             onClick={() => {
               setAssistantOpen(!assistantOpen);
-              setShowWelcomePill(false);
             }}
             aria-label="Ask Kunal - AI Portfolio Assistant"
             className={`relative flex h-[76px] w-[76px] sm:h-[88px] sm:w-[88px] items-center justify-center rounded-full border border-cyan/40 bg-slate-950/90 backdrop-blur-2xl shadow-[0_15px_40px_rgba(0,0,0,0.85),0_0_25px_rgba(56,189,248,0.25)] transition-all duration-300 hover:scale-105 active:scale-95 ${
