@@ -6,6 +6,7 @@ import { Github } from "@/components/ui/BrandIcons";
 import { projects, workflowExamples } from "@/lib/data";
 import WorkflowDiagram from "@/components/projects/WorkflowDiagram";
 import ProjectVisual from "@/components/projects/ProjectVisual";
+import ShareProjectButton from "@/components/projects/ShareProjectButton";
 import { Card, Chip, Section } from "@/components/ui/Primitives";
 
 export function generateStaticParams() {
@@ -83,6 +84,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               <ExternalLink size={14} className="text-slate-500" /> Demo Staged For Review
             </span>
           )}
+          <ShareProjectButton title={p.name} />
         </div>
       </div>
 
